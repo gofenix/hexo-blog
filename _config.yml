@@ -78,4 +78,4 @@ theme: material
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://gitee.com/zhenfeng-zhu/zhenfeng-zhu.git
+  repo: https://github.com/zhenfeng-zhu/zhenfeng-zhu.github.io.git
