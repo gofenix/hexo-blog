@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 不只是码代码的Lucas
-subtitle:
-description:
+title: Lucas's blog
+subtitle: 极客 / 独立思考 / 执着 / 程序员 / 知行合一 / 好交益友
+description: 不只是码代码的Lucas
 author: Lucas
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.fengup.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
