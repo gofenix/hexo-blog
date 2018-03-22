@@ -161,7 +161,7 @@ toc:
 
 # SNS Menu
 sns:
-    email: youremail@email.com
+    email: codeless98@163.com
     facebook: "https://www.facebook.com/facebook"
     twitter: "https://twitter.com/twitter"
     googleplus: "https://www.google.com/"
@@ -181,8 +181,8 @@ sns_share:
     facebook: true
     googleplus: true
     weibo: true
-    linkedin: false
-    qq: false
+    linkedin: true
+    qq: true
     telegram: false
 
 # Sidebar Customize
@@ -247,16 +247,16 @@ sidebar:
 # If you want to use gitment or gitalk,you should get the client_id and client_secret form https://github.com/settings/applications/new
 # If you want to use valine,you should get the app_id and app_key form https://leancloud.cn ,more setting please see https://valine.js.org
 comment:
-    use: gitment
+    use: gitalk
     shortname: # duoshuo or disqus shortname
     changyan_appid:
     changyan_conf:
     changyan_thread_key_type: path
     livere_data_uid:
-    gitment_repo: https://github.com/zhenfeng-zhu/zhenfeng-zhu.github.io.git   # git repo of the hexo
-    gitment_owner: zhenfeng-zhu # git repo's owner
-    gitment_client_id: cb392aa5a9123f7ea918 # github app client id
-    gitment_client_secret : 1b126245a94d3e37e6597169d23411a266fb2af8 # github app client secret
+    gitment_repo:    # git repo of the hexo
+    gitment_owner:  # git repo's owner
+    gitment_client_id: # github app client id
+    gitment_client_secret :  # github app client secret
     valine_leancloud_appId:  # leancloud application app id
     valine_leancloud_appKey:  # leancloud application app key
     valine_notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
@@ -266,10 +266,10 @@ comment:
     valine_lang: zh-cn # i18n
     valine_placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
     valine_guest_info: nick,mail,link #valine comment header info
-    gitalk_repo: # git repo of the hexo
-    gitalk_owner: # git repo's owner
-    gitalk_client_id: # github app client id 
-    gitalk_client_secret: # github app client secret
+    gitalk_repo: https://github.com/zhenfeng-zhu/zhenfeng-zhu.github.io.git
+    gitalk_owner: zhenfeng-zhu
+    gitalk_client_id: 116f7d73f5cf72a6fdcd
+    gitalk_client_secret: 8a8bce8067a3087250a5594c6b4d8d5cb5719d27
 
 # Search Systems
 # Available value:
@@ -295,9 +295,9 @@ leancloud:
 
 # Busuanzi 不蒜子 Views
 busuanzi:
-    enable: false
+    enable: true
     all_site_uv: false
-    post_pv: false
+    post_pv: true
     busuanzi_pure_mini_js: "https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"
 
 # Files Vendors

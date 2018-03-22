@@ -1,8 +1,7 @@
 ---
-title: java-memory-thread
+title: Java内存模型和线程
 date: 2018-03-22 19:16:37
-tags: 
-    - "java"
+tags: "java"
 ---
 # java内存模型和线程
 
