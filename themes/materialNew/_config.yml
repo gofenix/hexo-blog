@@ -162,15 +162,15 @@ toc:
 # SNS Menu
 sns:
     email: codeless98@163.com
-    facebook: "https://www.facebook.com/facebook"
-    twitter: "https://twitter.com/twitter"
-    googleplus: "https://www.google.com/"
-    weibo:
+    facebook:
+    twitter:
+    googleplus:
+    weibo: "https://www.weibo.com/3090277575/profile?topnav=1&wvr=6"
     instagram:
     tumblr:
-    github:
+    github: "https://github.com/zhenfeng-zhu/"
     linkedin:
-    zhihu:
+    zhihu: "https://www.zhihu.com/people/zhu-zhen-feng-96/activities"
     bilibili:
     telegram:
     v2ex:
@@ -188,8 +188,11 @@ sns_share:
 # Sidebar Customize
 sidebar:
     dropdown:
+        Follow Me:
+            link: "https://github.com/zhenfeng-zhu/"
+            icon: account_circle
         Email Me:
-            link: "#"
+            link: "mailto:codelss98@163.com"
             icon: email
     homepage:
         use: true
@@ -197,7 +200,7 @@ sidebar:
         divider: false
     archives:
         use: true
-        icon: inbox
+        icon: archive
         divider: false
     categories:
         use: false
@@ -206,15 +209,15 @@ sidebar:
     pages:
         图册:
             link: "/gallery"
-            icon: person
+            icon: photo
             divider: true
         标签云:
             link: "/tags"
-            icon: person
+            icon: loyalty
             divider: false
         时间线:
             link: "/timeline"
-            icon: person
+            icon: timeline
             divider: true
         关于我:
             link: "/about"
@@ -222,7 +225,7 @@ sidebar:
             divider: false
         友情链接:
             link: "/links"
-            icon: person
+            icon: face
             divider: false
 
 
@@ -247,13 +250,13 @@ sidebar:
 # If you want to use gitment or gitalk,you should get the client_id and client_secret form https://github.com/settings/applications/new
 # If you want to use valine,you should get the app_id and app_key form https://leancloud.cn ,more setting please see https://valine.js.org
 comment:
-    use: gitalk
+    use: gitment
     shortname: # duoshuo or disqus shortname
     changyan_appid:
     changyan_conf:
     changyan_thread_key_type: path
     livere_data_uid:
-    gitment_repo: zhenfeng-zhu.github.io
+    gitment_repo: comments
     gitment_owner: zhenfeng-zhu
     gitment_client_id: cb392aa5a9123f7ea918
     gitment_client_secret: 1b126245a94d3e37e6597169d23411a266fb2af8
@@ -275,7 +278,7 @@ comment:
 # Available value:
 #     swiftype | google | local
 search:
-    use: google
+    use: local
     swiftype_key:
 
 # Analytics Systems
