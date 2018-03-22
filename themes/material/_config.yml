@@ -139,11 +139,11 @@ sns:
 
 # SNS Share Switch
 sns_share:
-    twitter: false
-    facebook: false
+    twitter: true
+    facebook: true
     googleplus: false
     weibo: true
-    linkedin: false
+    linkedin: true
     qq: true
     telegram: false
 
@@ -214,12 +214,13 @@ materialcdn:
 # Available value of "use":
 #     disqus | disqus_click | changyan | 163gentie
 comment:
-    use:
+    use: 
     shortname: # duoshuo or disqus shortname
     changyan_appid:
     changyan_conf:
     changyan_thread_key_type: path
     gentie_productKey: 
+    
 
 # Search Systems
 # Available value:
