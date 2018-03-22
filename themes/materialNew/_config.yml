@@ -247,16 +247,16 @@ sidebar:
 # If you want to use gitment or gitalk,you should get the client_id and client_secret form https://github.com/settings/applications/new
 # If you want to use valine,you should get the app_id and app_key form https://leancloud.cn ,more setting please see https://valine.js.org
 comment:
-    use: gitalk
+    use: gitment
     shortname: # duoshuo or disqus shortname
     changyan_appid:
     changyan_conf:
     changyan_thread_key_type: path
     livere_data_uid:
-    gitment_repo:    # git repo of the hexo
-    gitment_owner:  # git repo's owner
-    gitment_client_id: # github app client id
-    gitment_client_secret :  # github app client secret
+    gitment_repo: zhenfeng-zhu.github.io
+    gitment_owner: zhenfeng-zhu
+    gitment_client_id: cb392aa5a9123f7ea918
+    gitment_client_secret: 1b126245a94d3e37e6597169d23411a266fb2af8
     valine_leancloud_appId:  # leancloud application app id
     valine_leancloud_appKey:  # leancloud application app key
     valine_notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
