@@ -13,8 +13,8 @@ head:
         - "分布式"
         - "区块链"
     site_verification:
-        google:
-        baidu:
+        google: "不只是码代码的Lucas"
+        baidu: "不只是码代码的Lucas"
 
     # Enable generate structured-data as JSON+LD for SEO or not.
     #    Set as 'false' if it cause some wrong when `hexo g`.
