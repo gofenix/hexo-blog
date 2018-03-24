@@ -69,7 +69,7 @@ background:
     purecolor: "#F5F5F5"
     #bgimg: "/img/bg.png"
     bing:
-        enable: true
+        enable: false
         parameter:
 
 # Images Settings
