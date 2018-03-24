@@ -1,6 +1,15 @@
+#! /bin/sh
 
-filename=$1
+if [ -z "$1" ]; then
+    currentTime=`date "+%Y-%m-%d-%H-%M-%S"`
+    filename=${currentTime}
+    echo ${filename}
+else
+    filename=$1
+    echo ${filename}
+fi
 
-newBlog=`hexo new $1`
 
-codeOpen=`code source/_posts/$1.md`
+newBlog=`hexo new ${filename}`
+
+codeOpen=`code source/_posts/${filename}.md`
