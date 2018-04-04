@@ -12,4 +12,4 @@ fi
 
 newBlog=`hexo new ${filename}`
 
-codeOpen=`code source/_posts/${filename}.md`
+codeOpen=`open -a Typora source/_posts/${filename}.md`
