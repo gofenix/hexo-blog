@@ -3,7 +3,7 @@ title: node学习笔记
 date: 2018-04-22 15:41:21
 tags: 
     - node
-    - JavaScript
+    - javascript
 ---
 
 写node也有一段时间了，整理一下学习笔记，共同进步
