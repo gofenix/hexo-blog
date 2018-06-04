@@ -9,7 +9,7 @@ tags:
 
 Vert.x的kotlin协程提供了async/await或者和go类似的channel。这使得你能够以熟悉的顺序风格写垂直代码。
 
-vertx-lang-kotlin-coroutines集成了kotlin协程，用于执行异步操作和处理事件。这导致了一个看起来像是同步代码的编程模型，但它不会阻塞内核线程。
+vertx-lang-kotlin-coroutines集成了kotlin协程，用于执行异步操作和处理事件。这样就能够以同步代码的模型编写代码，而且不会阻塞内核线程。
 
 # 简介
 
