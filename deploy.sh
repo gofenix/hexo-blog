@@ -1,2 +1,10 @@
-dep=`hexo clean && hexo g && hexo d`
-bac=`git add -A && git commit -m "back up" && git push -f`
+
+echo `hexo clean`
+echo `hexo g`
+echo `hexo d`
+
+echo `git add -A`
+
+echo `git commit -m "back up"`
+
+echo `git push -f`
