@@ -9,12 +9,12 @@ tags:
 
 > 无服务器函数变得简单。
 
-![Stack](/Users/zhuzhenfeng/Desktop/DFrkF4NXoAAJwN2.jpg)
+![](https://ws1.sinaimg.cn/large/b831e4c7gy1ftucj00kylj20xc0j511g.jpg)
 
-### 函数看门狗
+### 函数监视器
 
-* 你可以通过添加*函数看门狗* (一个小型的Golang HTTP服务)把任何一个Docker镜像变成无服务器函数。
-* *函数看门狗*是允许HTTP请求通过STDIN转发到目标进程的入口点。响应会从你应用写入STDOUT返回给调用者。
+* 你可以通过添加*函数监视器* (一个小型的Golang HTTP服务)把任何一个Docker镜像变成无服务器函数。
+* *函数监视器*是允许HTTP请求通过STDIN转发到目标进程的入口点。响应会从你应用写入STDOUT返回给调用者。
 
 ### API网关/UI门户
 
