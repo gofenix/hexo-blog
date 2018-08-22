@@ -45,6 +45,6 @@ ENTRYPOINT /opt/wallet
 
 *When err is nil, resp always contains a non-nil resp.Body."*
 
-是defer res.Body.Close()，应该在err检查之后。
+是http请求的时候，defer res.Body.Close()引起的，应该在err检查之后。
 
 The `defer` only defers the function call. The field and method are accessed immediately.
