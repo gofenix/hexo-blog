@@ -1,5 +1,5 @@
 ---
-title: Parity联盟链的部署
+title: 基于以太坊的Parity联盟链部署
 date: 2018-08-22 16:51:13
 tags:
 ---
