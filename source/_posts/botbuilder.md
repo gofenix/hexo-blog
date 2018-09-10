@@ -58,8 +58,144 @@ tags:
 
 示例：
 
+```js
+const {startWith, when, goto, stay, stop} = botkit.DSL(fsm);
+ 
+startWith(MyStates.IDLE, {counter: 0});
 
+when(MyStates.IDLE)(async (sender, content, data) => {
+           
+});
 
-主要记录一下对微软项目的机器人框架的梳理。
+when(MyStates.UI)((sender, content, data) => {
+            
+});
 
-现阶段聊天机器人主要
+when(MyStates.STEP1)((sender, content, data) => {
+            
+});
+
+when(MyStates.STEP2)((sender, content, data) => {
+            
+});
+
+when(MyStates.DONE)((sender, content, data) => {
+            
+});
+
+when(MyStates.EMPTY)((sender, content, data) => {
+            
+});
+
+when(MyStates.LOOP)((sender, content, data) => {
+           
+});
+```
+
+从示例中可以发现，基于fsm的机器人框架需要使用类似DSL领域特定语言一样的描述语言，定义各种各样的状态，每一个状态都有触发点。当满足某个状态条件时，进入该状态，执行该状态的逻辑。这种基于状态机的机器人框架，对于简单的场景比较容易写，但是如果是遇到了复杂的场景，比如多轮对话中还附带上下文信息，就会写起来非常复杂。
+
+于是引入了基于工作流的chatbot框架。其实工作流是对fsm的一种简化封装，本质上来讲，工作流能做到的，fsm状态机也能做到，而且fsm状态机或许能拆的更细，但是工作流的一个个function，或者是function的集合dialog，可以互相组合，开发起来更符合大部分人的直觉。
+
+- routing dialog
+
+  ```js
+  // hotels.js
+  module.exports = [
+      // Destination
+      function (session) {
+          session.send('Welcome to the Hotels finder!');
+          builder.Prompts.text(session, 'Please enter your destination');
+      },
+      function (session, results, next) {
+          session.dialogData.destination = results.response;
+          session.send('Looking for hotels in %s', results.response); 
+          next();
+      },
+      ...
+  ];
+  
+  // app.js
+  var bot = new builder.UniversalBot(connector, [
+      function (session) {
+          // ...
+      },
+      // ...
+  ]);
+  
+  bot.dialog('hotels', require('./hotels'));
+  bot.dialog('flights', require('./flights'));
+  ```
+
+  通过routing dialog，我们可以实现dialog的复用。
+
+- waterfall dialog
+
+  一个瀑布流的dialog，可以让我们在一个dialog中像流一样完成一系列的动作。就像fsm的多种状态的集合。
+
+  ```js
+  [
+      // Destination
+      function (session) {
+          session.send('Welcome to the Hotels finder!');
+          builder.Prompts.text(session, 'Please enter your destination');
+      },
+      function (session, results, next) {
+          session.dialogData.destination = results.response;
+          session.send('Looking for hotels in %s', results.response); 
+          next();
+      },
+      ...
+      function (session) {
+          var destination = session.dialogData.destination;
+          var checkIn = new Date(session.dialogData.checkIn);
+          var checkOut = checkIn.addDays(session.dialogData.nights);
+  
+          session.send(
+              'Ok. Searching for Hotels in %s from %d/%d to %d/%d...',
+              destination,
+              checkIn.getMonth() + 1, checkIn.getDate(),
+              checkOut.getMonth() + 1, checkOut.getDate());
+  
+          // Async search
+          Store
+              .searchHotels(destination, checkIn, checkOut)
+              .then(function (hotels) {
+                  // Results
+                  session.send('I found in total %d hotels for your dates:', hotels.length);
+  
+                  var message = new builder.Message()
+                      .attachmentLayout(builder.AttachmentLayout.carousel)
+                      .attachments(hotels.map(hotelAsAttachment));
+  
+                  session.send(message);
+  
+                  // End
+                  session.endDialog();
+              });
+      }
+  ]
+  ```
+
+- state
+
+  在一个dialog上下文中共享的数据，或者在多个dialog中共享的数据。对于微软的botbuilder来讲，他们提供了如下几个API：
+
+  | Field                   | Use Cases                                                    |
+  | ----------------------- | ------------------------------------------------------------ |
+  | userData                | Stores information globally for the user across all conversations. |
+  | conversationData        | Stores information globally for a single conversation. This data is visible to everyone within the conversation so care should be used to what’s stored there. It’s disabled by default and needs to be enabled using the bots [`persistConversationData`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iuniversalbotsettings.html#persistconversationdata) setting. |
+  | privateConversationData | Stores information globally for a single conversation but its private data for the current user. This data spans all dialogs so it’s useful for storing temporary state that you want cleaned up when the conversation ends. |
+  | dialogData              | Persists information for a single dialog instance. This is essential for storing temporary information in between the steps of a waterfall. |
+
+## Conversation UI
+
+对话式 UI（Conversation UI，下文简称 CUI）。
+
+CUI 到底是什么？很好理解，我们日常跟人聊天的微信、短信界面就是。由一条条消息组成，按时间先后展示出来，就可以看作 CUI。
+
+chatbot在与用户交流时，不单单是只有文字，还会需要用户进行互动，这时候就是CUI的用武之地了。我们可以和移动端进行约定，对一些特定的消息格式进行渲染，这样就可以做出按钮，列表等。
+
+## Bot Service
+
+作为一个机器人框架，开发完成之后，还需要和telegram，Facebook messenger，slack等IM平台进行对接，如果要开发者一个个对接的话，将会特别麻烦。作为chatbot开发框架的一部分，bot service的工作就是对接IM平台。
+
