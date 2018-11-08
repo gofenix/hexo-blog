@@ -217,7 +217,35 @@ istio项目中，最根本的组件是运行在每个pod里的envoy容器。这�
 - 所谓的声明式，指的就是我只需要提交一个定义好的API对象来声明我所期望的状态是什么样子。
 - 其次，声明式API允许有多个API写端，以PATCH的方式对API对象进行修改，而无需关心原始的YAML文件的内容。
 - 最后，Kubernetes基于对API对象的增删改查，在无需外界干预的情况下，完成对实际状态和期望状态的调谐。
-- 
+
+一个API对象在etcd中完整路径是由：group（API组），version（API版本）和Resource（API资源类型）三个部分组成的。
+
+```yaml
+apiVersion: batch/v2
+kind: CronJob
+```
+
+batch是组，v2是版本，CronJob是类型。
+
+对于核心API对象：Pod，Node等，不需要group的。非核心对象是需要组。
+
+匹配规则就是：
+
+/apis/batch/v2/CronJob
+
+- 首先yaml文件被提交给了APIServer
+
+  过滤，授权，超时处理或审计等
+
+- 进入路由流程
+
+  根据yaml，按照匹配规则去找
+
+- 根据定义，按照yaml中的字段，创建一个对象
+
+- 进行Amission和Validation。
+
+- 把验证过的对象，序列化存到etcd中
 
 
 

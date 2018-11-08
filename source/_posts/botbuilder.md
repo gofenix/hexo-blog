@@ -199,3 +199,73 @@ chatbot在与用户交流时，不单单是只有文字，还会需要用户进�
 
 作为一个机器人框架，开发完成之后，还需要和telegram，Facebook messenger，slack等IM平台进行对接，如果要开发者一个个对接的话，将会特别麻烦。作为chatbot开发框架的一部分，bot service的工作就是对接IM平台。
 
+## Bot Builder源码阅读
+
+微软的botbuilder-js出到了V4版本，在新版本的机器人框架有着很大的变动，相比于V3目录结构变化了，而且机器人编写流程也有了一定的差异。
+
+项目结构
+
+```
+├── botbuilder
+├── botbuilder-ai
+├── botbuilder-azure
+├── botbuilder-core
+├── botbuilder-dialogs
+├── botframework-config
+├── botframework-connector
+├── botframework-schema
+```
+
+目录结构更加的组件化。
+
+如果我们不使用微软的服务，那么botbuilder-ai和botbuilder-azure其实不重要。
+
+### botbuilder
+
+botbuilder是框架的入口，在这个package中做的事情比较简单：
+
+```typescript
+export * from './botFrameworkAdapter';
+export * from './fileTranscriptStore';
+export * from '../../botbuilder-core/lib';
+```
+
+导出botbuilder-core和继承了botAdapter的子类botFrameworkAdapter。
+
+fileTranscriptStore是存储每个activity的transcript到文件中，Transcript是人和bot的对话动作的日志。
+
+如果我们要定制自己的bot动作，其实就可以继承botAdapter，然后对接自己的IM等等。botAdapter也是botbuilder-core中的，所以botbuilder-core是核心，只要读懂了botbuilder-core，就可以说是理解了微软的机器人框架。
+
+### botbuilder-core
+
+看botbuilder-core，也从index.ts开始。
+
+```typescript
+export * from '../../botframework-schema/lib';
+export * from './autoSaveStateMiddleware';
+export * from './botAdapter';
+export * from './botState';
+export * from './botStatePropertyAccessor';
+export * from './botStateSet';
+export * from './browserStorage';
+export * from './cardFactory';
+export * from './conversationState';
+export * from './memoryStorage';
+export * from './memoryTranscriptStore';
+export * from './messageFactory';
+export * from './middlewareSet';
+export * from './privateConversationState';
+export * from './propertyManager';
+export * from './recognizerResult';
+export * from './showTypingMiddleware';
+export * from './storage';
+export * from './testAdapter';
+export * from './transcriptLogger';
+export * from './turnContext';
+export * from './userState';
+```
+
+这里引入了一个botframework-schema，通过名字可以看出来，这就是一个类型定义的包，主要是机器人Activity的Schema。Activity是人和bot所做的会话的程序级别的表示，该schema中包含了文本协议、多媒体和非内容动作（如社交互动和打字指示符）的规定。
+
+
+
