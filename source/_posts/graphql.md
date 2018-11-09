@@ -6,6 +6,8 @@ tags:
 
 graphql经常被认为是聚焦于前端的技术。
 
+# 核心概念
+
 ## SDL：schema definition language（模式定义语言）
 
 如：
@@ -153,7 +155,7 @@ graphql提供了实时订阅更新。
 
 当客户端订阅一个事件的时候，将会保持一个和服务器的稳定连接，当有变化时会告诉客户端。
 
-```
+```ts
 subscription {
   newPerson {
     name
@@ -301,4 +303,6 @@ for each post in posts
   Post.title(post, null, context) -> title
   Post.content(post, null, context) -> content
 ```
+
+# 实战
 
