@@ -165,7 +165,7 @@ restartPolicy在job对象里只被允许设置为never和onFailure；而在Deplo
 
 
 
-声明式API和Kubernetes编程范式
+### 声明式API和Kubernetes编程范式
 
 创建一个两个Nginx容器的步骤：
 
@@ -249,11 +249,31 @@ batch是组，v2是版本，CronJob是类型。
 
 
 
+### RBAC
+
+基于角色的控制
+
+role：角色，一组规则，定义Kubernetes API对象的操作权限
+
+subject：被作用者，可以是人，也可以是机器，也可以是Kubernetes定义的用户
+
+rolebinding：定义被作用者和角色的绑定关系
 
 
 
+ServiceAccount，会被自动创建分配一个secret对象。
 
 
+
+所谓角色就是一组权限规则列表，而我们分配这些权限的方式，就是通过创建rolebinding对象，将被作用者和权限列表进行绑定。
+
+另外，与之对应的ClusterRole和ClusterRoleBinding，则是Kubernetes集群级别的Role和RoleBinding，它们的作用范围不受Namespace限制。
+
+尽管被作用者有很多种（如User、Group），但在我们平常使用的时候，最普遍的还是ServiceAccount。
+
+
+
+### 网络模型
 
 Veth Pair 常常被用作连接不同 Network Namespace的网线。veth pair虚拟设备。总是以两张虚拟网卡形式成对出现。并且，从一个网卡中发出的数据包，可以直接出现在另一张网卡上，哪怕这两个网卡在不同的network Namespace里。
 
