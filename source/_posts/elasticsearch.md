@@ -64,7 +64,7 @@ Java HotSpot(TM) 64-Bit Server VM warning: Option UseConcMarkSweepGC was depreca
 
 这样就将es启动了，然后在chrome中，输入http://localhost:9200，即可查看有没有启动成功。
 
-```json
+```on
 {
     "name": "M41310-",
     "cluster_name": "elasticsearch",
@@ -96,7 +96,7 @@ http://127.0.0.1:9200/myindex
 
 response
 
-```json
+```on
 {
     "acknowledged": true,
     "shards_acknowledged": true,
@@ -116,7 +116,7 @@ http://127.0.0.1:9200/myindex
 
 response
 
-```json
+```on
 {
     "acknowledged": true
 }
@@ -134,7 +134,7 @@ http://localhost:9200/myindex/fulltext/_mapping
 
 body
 
-```json
+```on
 {
   "properties": {
     "content": {
@@ -148,7 +148,7 @@ body
 
 response
 
-```json
+```on
 {
     "acknowledged": true
 }
@@ -166,7 +166,7 @@ http://localhost:9200/myindex/fulltext/1
 
 body
 
-```json
+```on
 { 
     "content": "中国崛起哦" 
 }
@@ -174,7 +174,7 @@ body
 
 response
 
-```json
+```on
 {
     "_index": "myindex",
     "_type": "fulltext",
@@ -203,7 +203,7 @@ http://127.0.0.1:9200/myindex/fulltext/_search
 
 body
 
-```json
+```on
 {
   "query": {
     "match": {
@@ -217,7 +217,7 @@ body
 
 response
 
-```json
+```on
 {
     "took": 98,
     "timed_out": false,
@@ -283,7 +283,7 @@ _search?q=content:中国
 
 ### bool操作符的DSL
 
-```json
+```on
 {
     "query" : {
         "bool": {
@@ -306,7 +306,7 @@ _search?q=content:中国
 
 ### 短语搜索
 
-```json
+```on
 {
     "query" : {
         "match_phrase" : {
@@ -322,7 +322,7 @@ _search?q=content:中国
 
 许多应用都倾向于在每个搜索结果中 *高亮* 部分文本片段，以便让用户知道为何该文档符合查询条件。在 Elasticsearch 中检索出高亮片段也很容易。
 
-```json
+```on
 {
     "query" : {
         "match_phrase" : {
@@ -343,7 +343,7 @@ _search?q=content:中国
 
  Elasticsearch 有一个功能叫聚合（aggregations），允许我们基于数据生成一些精细的分析结果。聚合与 SQL 中的 `GROUP BY` 类似但更强大。
 
-```json
+```on
 {
   "aggs": {
     "all_interests": {

@@ -31,7 +31,7 @@ node官方提供的解决方案是cluster。
 
 以下是官方文档的一个例子：
 
-```javascript
+```
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;
@@ -115,7 +115,7 @@ if (cluster.isMaster) {
 
 虽然每个 Worker 进程是相对独立的，但是它们之间始终还是需要通讯的，叫进程间通讯（IPC）。
 
-```javascript
+```
 if (cluster.isMaster) {
   const worker = cluster.fork();
   worker.send('hi there');

@@ -17,7 +17,7 @@ tags:
 
 goroutine使用的内存比线程更少，go在运行的时候会自动在配置的一组逻辑处理器上调度执行。比如：
 
-```go
+```
 func log(msg string){
     ...
 }
@@ -33,7 +33,7 @@ go log("")
 
 对于java来说，所有的设计都是围绕着接口展开，于是在设计模式中，就是面向接口编程：
 
-```go
+```
 interface User{
     void login();
     void logout();
@@ -42,7 +42,7 @@ interface User{
 
 在java中，继承的类必须显式声明继承了此接口。而在go中接口只是描述一个动作，如果说是实现这个接口，只需要让某个实例实现了这个接口中的所有方法就行了。
 
-```go
+```
 type Reader interface{
     Read(p []byte))(n int, err error)
 }
@@ -66,7 +66,7 @@ type Reader interface{
 
 ### 语法
 
-```go
+```
 go f(x, y)
 ```
 
@@ -74,7 +74,7 @@ go是关键字，后面跟函数。
 
 ### 例子
 
-```go
+```
 package main
 
 import (
@@ -108,7 +108,7 @@ func main() {
 
 可以看到是用了9秒的时间才完成，如果是采用goroutine的话，就很快。很简单，就是在执行doSomething之前，加上go关键字。
 
-```Go
+```
 import (
 	"log"
 	"time"
@@ -131,7 +131,7 @@ func main() {
 
 我们应该采用sync.WaitGroup来等待所有的goroutine结束。
 
-```go
+```
 package main
 
 import (
@@ -183,13 +183,13 @@ func main() {
 
 使用内建函数 make 可以创建 channel，举例如下：
 
-```go
+```
 ch := make(chan int)  // 注意： channel 必须定义其传递的数据类型
 ```
 
 也可以用 var 声明 channel, 如下：
 
-```go
+```
 var ch chan int
 ```
 

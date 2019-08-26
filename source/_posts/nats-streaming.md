@@ -112,7 +112,7 @@ go run main.go --all -c test-cluster -id myID foo
 
 首先在本地启动nats-streaming-server，然后下面的代码展示了发布订阅的过程：
 
-```go
+```
 package main
 
 import (

@@ -76,7 +76,7 @@ spring.redis.timeout=0
 
 ### 3.1 `StringRedisTemplate`
 
-```java
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
@@ -101,7 +101,7 @@ public class DemoApplicationTests {
 
 #### 3.2.1 新建User类
 
-```java
+```
 @Data
 @AllArgsConstructor
 public class User implements Serializable{
@@ -114,7 +114,7 @@ public class User implements Serializable{
 
 #### 3.2.2 创建UserRepository
 
-```java
+```
 @Repository
 public class UserRepository {
     @Autowired
@@ -149,7 +149,7 @@ public class UserRepository {
 
 #### 3.2.3 单元测试
 
-```java
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {

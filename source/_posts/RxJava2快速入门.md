@@ -7,7 +7,7 @@ tags: "java"
 
 ## 引入依赖
 
-```java
+```
 compile 'io.reactivex.rxjava2:rxjava:2.0.1'
 ```
 
@@ -15,7 +15,7 @@ compile 'io.reactivex.rxjava2:rxjava:2.0.1'
 
 ### 简单版本
 
-```java
+```
 	private static void helloSimple() {
         Consumer<String> consumer = new Consumer<String>() {
             @Override
@@ -30,7 +30,7 @@ compile 'io.reactivex.rxjava2:rxjava:2.0.1'
 
 ### 复杂版本
 
-```java
+```
 	private static void helloComplex() {
         Observer<String> observer = new Observer<String>() {
             @Override
@@ -60,7 +60,7 @@ compile 'io.reactivex.rxjava2:rxjava:2.0.1'
 
 ### 变态版本
 
-```java
+```
 	private static void helloPlus() {
         Observer<String> observer = new Observer<String>() {
             @Override
@@ -103,7 +103,7 @@ compile 'io.reactivex.rxjava2:rxjava:2.0.1'
 你早上去吃早餐，师傅是被观察者，说咱这有"包子", "馒头", "花生", "牛奶", "饺子", "春卷", "油条"，你仔细想了想，发现你是最喜欢饺子的，所以把其他的都排除掉，
 于是你就吃到了饺子。
 
-```java
+```
 	private static void helloFilter() {
         Consumer<String> consumer = new Consumer<String>() {
             @Override
@@ -130,7 +130,7 @@ map操作符能够完成数据类型的转换。
 
 将String类型转换为Integer类型。
 
-```java
+```
 	private static void helloMap() {
         // 观察者观察Integer
         Observer<Integer> observer = new Observer<Integer>() {
@@ -172,7 +172,7 @@ flatmap能够链式地完成数据类型的转换和加工。
 
 遍历一个学校所有班级所有组的所有学生
 
-```java
+```
 private void flatmapClassToGroupToStudent() {
     Observable.fromIterable(new School().getClasses())
             //输入是Class类型，输出是ObservableSource<Group>类型

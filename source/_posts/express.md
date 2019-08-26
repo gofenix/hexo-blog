@@ -18,7 +18,7 @@ npm install --save express
 
 ### hello world
 
-```javascript
+```
 var express = require('express');
 var app = express();
 
@@ -86,7 +86,7 @@ app.METHOD(PATH, HANDLER)
 
 比如简单的Hello world：
 
-```javascript
+```
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
@@ -112,7 +112,7 @@ app.get('/', function (req, res) {
 
 可以使用 `app.route()` 为路由路径创建可链接的路由处理程序。 因为在单一位置指定路径，所以可以减少冗余和输入错误。
 
-```javascript
+```
 app.route('/book')
   .get(function(req, res) {
     res.send('Get a random book');
@@ -133,7 +133,7 @@ app.route('/book')
 
 在应用程序目录中创建名为 `birds.js` 的路由器文件，其中包含以下内容：
 
-```javascript
+```
 var express = require('express');
 var router = express.Router();
 
@@ -156,7 +156,7 @@ module.exports = router;
 
 接着，在应用程序中装入路由器模块：
 
-```javascript
+```
 var birds = require('./birds');
 ...
 app.use('/birds', birds);

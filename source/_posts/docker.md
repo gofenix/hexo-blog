@@ -87,7 +87,7 @@ tags:
 
   模板格式
 
-  ```yaml
+  ```
   version: 3.0
   services:
   	web:

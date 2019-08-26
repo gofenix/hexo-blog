@@ -12,13 +12,13 @@ tags:
 
 看到别人写的
 
-```javascript
+```
 import { a } from "./module";
 ```
 
 所以自己也想要这么写，但是每次运行的时候都会报错。
 
-```javascript
+```
 // demo2.js
 export const a = "hello";
 
@@ -56,7 +56,7 @@ zhuzhenfengdeMacBook-Pro :: node/node-example »
 
 给每个js文件都以mjs命名。
 
-```javascript
+```
 // module.js
 export const a = "hello";
 

@@ -105,7 +105,7 @@ OpenFaaS 的 watchdog 是通过标准 IO 流的 stdin 和 stdout 处理 HTTP 请
 
 修改 handler.py 为：
 
-```python
+```
 import sys
 import json
 
@@ -240,14 +240,14 @@ $ echo -n "California is great, it's always sunny there." | faas-cli invoke sent
 
 下面的代码被用于在任何一个函数中调用 *Sentiment Analysis*函数：
 
-```python
+```
     test_sentence = "California is great, it's always sunny there."
     r = requests.get("http://gateway:8080/function/sentimentanalysis", text= test_sentence)
 ```
 
 或者通过一个环境变量：
 
-```python
+```
     gateway_hostname = os.getenv("gateway_hostname", "gateway") # uses a default of "gateway" for when "gateway_hostname" is not set
     test_sentence = "California is great, it's always sunny there."
     r = requests.get("http://" + gateway_hostname + ":8080/function/sentimentanalysis", text= test_sentence)
@@ -255,7 +255,7 @@ $ echo -n "California is great, it's always sunny there." | faas-cli invoke sent
 
 因为结果总是 JSON 格式的，所示我们可以使用.json()转化响应。
 
-```python
+```
     result = r.json()
     if result["polarity"] > 0.45:
        return "That was probably positive"
@@ -265,7 +265,7 @@ $ echo -n "California is great, it's always sunny there." | faas-cli invoke sent
 
 现在创建一个 Python 函数，然后合并在一起：
 
-```python
+```
 import os
 import requests
 import sys

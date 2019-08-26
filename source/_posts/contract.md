@@ -111,7 +111,7 @@ Solidity是静态类型的语言。
 
 输出参数必须要在returns后面，和go的类似
 
-```javascript
+```
 function arithmetics(uint _a, uint _b) returns (uint o_sum, uint o_product) {
         o_sum = _a + _b;
         o_product = _a * _b;
@@ -132,7 +132,7 @@ function arithmetics(uint _a, uint _b) returns (uint , uint ) {
 
 调函数要发送wei和gas，就像下图所示：
 
-```javascript
+```
 pragma solidity ^0.4.0;
 
 contract InfoFeed {
@@ -168,7 +168,7 @@ contract Consumer {
 
   以太坊的日志工具接口。
 
-  ```javascript
+  ```
   event HighestBidIncreased(address bidder, uint amount); // 事件
   
   emit HighestBidIncreased(msg.sender, msg.value); // 触发事件

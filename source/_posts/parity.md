@@ -24,7 +24,7 @@ brew install parity
 
 创世区块的配置文件：
 
-```json
+```on
 // demo-spec.json
 
 {
@@ -238,7 +238,7 @@ curl --data '{"jsonrpc":"2.0","method":"personal_sendTransaction","params":[{"fr
 
 然后在truffle中，配置如下：
 
-```javascript
+```
 // truffle.js
 
 module.exports = {
@@ -283,7 +283,7 @@ cd etherchain-light && yarn
 
 修改config.js.example文件为config.js，然后把Provider改为HttpProvider，连接到node0的节点即可。
 
-```javascript
+```
 // config.js
 var web3 = require('web3');
 var net = require('net');

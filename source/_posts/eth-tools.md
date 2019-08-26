@@ -129,7 +129,7 @@ github.com/ethereum/go-ethereum
 
 首先要连接到测试链，测试链可以是本地的也可以是公网的。
 
-```go
+```
 func connectRPC() (*ethclient.Client, error) {
 	// 连接测试链的节点
 	//rpcClient, err := rpc.Dial("https://rinkeby.infura.io/v3/6c81fb1b66804f0698d49f2ec242afc9")
@@ -146,7 +146,7 @@ func connectRPC() (*ethclient.Client, error) {
 
 一般都选择以keystore的形式创建账户
 
-```go
+```
 func CreateWallet() (key, addr string) {
 	ks := keystore.NewKeyStore("~/Documents/github/gowork/src/geth-demo/",
 		keystore.StandardScryptN, keystore.StandardScryptP)
@@ -164,7 +164,7 @@ func CreateWallet() (key, addr string) {
 
 当然另一种创建账户的方式是用私钥：
 
-```go
+```
 func CreateWallet() (string, error) {
 	key, err := crypto.GenerateKey()
 	if err != nil {
@@ -187,13 +187,13 @@ node一般使用web3。创建web3对象的时候要使用一个provider，这个
 
 创建web3
 
-```javascript
+```
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 ```
 
 或者使用`truffle-hdwallet-provider`来创建，使用这个的前提是，自己已经创建了一个钱包，并且这个钱包是HD的。
 
-```javascript
+```
 const Web3 = require('web3');
 const HDWalletProvider = require('truffle-hdwallet-provider');
 

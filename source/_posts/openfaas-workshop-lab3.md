@@ -119,7 +119,7 @@ functions:
 
 如下是`handler.py`文件的内容：
 
-```python
+```
 def handle(req):
     """handle a request to the function
     Args:
@@ -208,7 +208,7 @@ requests
 
 这是返回结果的例子：
 
-```json
+```on
 {
   "number": 6,
   "people": [
@@ -225,7 +225,7 @@ requests
 
 更新 handler.py：
 
-```python
+```
 import requests
 import random
 

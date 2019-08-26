@@ -51,7 +51,7 @@ provider要提供的一些API有：
 
 在provider的server.go的serve方法，可以看到这个serve方法创建了几个路由，接受一个FaaSHandler对象。
 
-```go
+```
 // Serve load your handlers into the correct OpenFaaS route spec. This function is blocking.
 func Serve(handlers *types.FaaSHandlers, config *types.FaaSConfig) {
 	r.HandleFunc("/system/functions", handlers.FunctionReader).Methods("GET")
@@ -76,7 +76,7 @@ func Serve(handlers *types.FaaSHandlers, config *types.FaaSConfig) {
 
 因此在自定义的provider，只需实现FaaSHandlers中的几个路由处理函数即可。这几个handler是：
 
-```go
+```
 // FaaSHandlers provide handlers for OpenFaaS
 type FaaSHandlers struct {
 	FunctionReader http.HandlerFunc
@@ -99,7 +99,7 @@ type FaaSHandlers struct {
 
 我们看下在faas-netes的中的FaaSHandlers实现：
 
-```go
+```
 bootstrapHandlers := bootTypes.FaaSHandlers{
 	FunctionProxy:  handlers.MakeProxy(functionNamespace, cfg.ReadTimeout),
 	DeleteHandler:  handlers.MakeDeleteHandler(functionNamespace, clientset),
@@ -125,7 +125,7 @@ bootstrapHandlers := bootTypes.FaaSHandlers{
 
 3. 组装代理转发的watchdog的地址
 
-   ```go
+   ```
    url := forwardReq.ToURL(fmt.Sprintf("%s.%s", service, functionNamespace), watchdogPort)
    ```
 
@@ -143,13 +143,13 @@ bootstrapHandlers := bootTypes.FaaSHandlers{
 
 这两个是和副本数相关的，所以放在一起对比讲解。这两个的实现依赖于Kubernetes的客户端，获取代码如下：
 
-```go
+```
 clientset, err := kubernetes.NewForConfig(config)
 ```
 
 这个config主要满足以下几个条件就行：
 
-```go
+```
 Config{
 		// TODO: switch to using cluster DNS.
 		Host:            "https://" + net.JoinHostPort(host, port),
@@ -168,7 +168,7 @@ Kubernetes的所有操作都可以通过rest api来完成，这两个handler也�
 
 2. 调用getService方法获取副本数，getService的核心代码就一句：
 
-   ```go
+   ```
    item, err := clientset.ExtensionsV1beta1().Deployments(functionNamespace).Get(functionName, getOpts)
    ```
 
@@ -184,7 +184,7 @@ Kubernetes的所有操作都可以通过rest api来完成，这两个handler也�
 
 3. 然后将deployment的副本数量设置为应设数量，这样做的目的是为了仅仅修改副本数，而不修改别的属性。
 
-   ```go
+   ```
    _, err = clientset.ExtensionsV1beta1().Deployments(functionNamespace).Update(deployment)
    ```
 
@@ -196,7 +196,7 @@ Kubernetes的所有操作都可以通过rest api来完成，这两个handler也�
 
 这几个是核心的几句代码：
 
-```go
+```
 clientset.ExtensionsV1beta1().Deployments(functionNamespace).Delete(request.FunctionName, opts)
 
 deploy := clientset.Extensions().Deployments(functionNamespace)

@@ -32,7 +32,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
 
 - 创建模块
 
-  ```javascript
+  ```
   // b.js
   function FunA(){
       return "hello world";
@@ -44,7 +44,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
 
 - 加载模块
 
-  ```javascript
+  ```
   // a.js
   const FunA=require('./b.js');
 
@@ -65,7 +65,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
 
   exports 是 module 对象的一个属性，同时它也是一个对象。在很多时候一个 js 文件有多个需要暴露的方法或是对象，module.exports 又只能暴露一个，那这个时候就要用到 exports:
 
-  ```javascript
+  ```
   function FunA(){
       return 'Tom';
   }
@@ -78,7 +78,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
   exports.FunB = FunB;
   ```
 
-  ```javascript
+  ```
   //FunA = exports,exports 是一个对象
   var FunA = require('./b.js');
   var name1 = FunA.FunA();// 运行 FunA，name = 'Tom'
@@ -89,7 +89,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
 
   当然在引入的时候也可以这样写：
 
-  ```javascript
+  ```
   //FunA = exports,exports 是一个对象
   var {FunA, FunB} = require('./b.js');
   var name1 = FunA();// 运行 FunA，name = 'Tom'
@@ -116,7 +116,7 @@ node社区崇尚DRY文化，即Don't repeate yourself。这种文化使得node�
 3. 在回调函数中一定要使用 response.end() 方法，用于结束当前请求，不然当前请求会一直处在等待的状态。
 4. 调用 listen 监听一个端口。
 
-```javascript
+```
 //原生模块
 var http = require('http');
 
@@ -131,7 +131,7 @@ http.createServer(function(reqeust, response){
 
   当get请求的时候，服务器通过request.method来判断当前的请求方式并通过request.url来获取当前的请求参数：
 
-  ```javascript
+  ```
   var http = require('http');
   var url = require('url');
    
@@ -146,7 +146,7 @@ http.createServer(function(reqeust, response){
 
   post请求则不能通过url来获取，这时候就得对请求体进行事件监听。
 
-  ```javascript
+  ```
   var http = require('http');
   var util = require('util');
   var querystring = require('querystring');
@@ -208,7 +208,7 @@ url和http是配合使用的。一般情况下url都是字符串类型的，包�
 
 当有多个 url 需要拼接处理的时候，可以用到 url.resolve
 
-```javascript
+```
 var url = require('url');
 url.resolve('http://dk-lan.com/', '/one')// 'http://dk-lan.com/one'
 ```
@@ -219,7 +219,7 @@ url是对url字符串的处理，而querystring就是仅针对参数的处理。
 
 ### 字符串转对象
 
-```javascript
+```
 var str = 'firstname=dk&url=http%3A%2F%2Fdk-lan.com&lastname=tom&passowrd=123456';
 var param = querystring.parse(param);
 //结果
@@ -228,7 +228,7 @@ var param = querystring.parse(param);
 
 ### 对象转字符串
 
-```javascript
+```
 var querystring = require('querystring');
 
 var obj = {firstname:"dk", url:"http://dk-lan.com", lastname: 'tom', passowrd: 123456};
@@ -244,7 +244,7 @@ var param = querystring.stringify(obj);
 
 ### 读取文本 -- 异步读取
 
-```javascript
+```
 var fs = require('fs');
 // 异步读取
 // 参数1：文件路径，
@@ -259,7 +259,7 @@ fs.readFile('demoFile.txt', function (err, data) {
 
 ### 读取文本 -- 同步读取
 
-```javascript
+```
 var fs = require('fs');
 var data = fs.readFileSync('demoFile.txt');
 console.log("同步读取: " + data.toString());
@@ -267,7 +267,7 @@ console.log("同步读取: " + data.toString());
 
 ### 写入文本 -- 覆盖写入
 
-```javascript
+```
 var fs = require('fs');
 //每次写入文本都会覆盖之前的文本内容
 fs.writeFile('input.txt', '抵制一切不利于中国和世界和平的动机！',  function(err) {
@@ -288,7 +288,7 @@ fs.writeFile('input.txt', '抵制一切不利于中国和世界和平的动机�
 
 ### 写入文本 -- 追加写入
 
-```javascript
+```
 var fs = require('fs');
 fs.appendFile('input.txt', '愿世界和平！', function (err) {
    if (err) {
@@ -313,7 +313,7 @@ fs.appendFile('input.txt', '愿世界和平！', function (err) {
 1. 图片读取是以字节的方式
 2. 图片在浏览器的渲染因为没有 img 标签，所以需要设置响应头为 image
 
-```javascript
+```
 var http = require('http');
 var fs = require('fs');
 var content =  fs.readFileSync('001.jpg', "binary");
@@ -350,7 +350,7 @@ axios是一种对ajax的封装，fetch是一种浏览器原生实现的请求方
 
 在现在发起http请求里，都是通过fetch来发送请求，和ajax类似。
 
-```javascript
+```
 const fetch=require('isomorphic-fetch');
 
 const options={
@@ -394,14 +394,14 @@ express的使用比较简单，由于我最早接触的是spring那套web框架�
 
 加载模块
 
-```javascript
+```
 const express=require('express');
 const app=express();
 ```
 
 监听端口8080
 
-```javascript
+```
 app.listen(3000, ()=>consloe.log('running'));
 ```
 
@@ -409,7 +409,7 @@ app.listen(3000, ()=>consloe.log('running'));
 
 express对路由的处理特别简单，配合中间件body parser，很方便的提供rest接口：
 
-```javascript
+```
 app.get('/', (req, res)=>{
     res.send('hello world');
 })
@@ -421,7 +421,7 @@ Node.js 默认是不能访问静态资源文件（*.html、*.js、*.css、*.jpg 
 
 __dirname 为 Node.js 的系统变量，指向文件的绝对路径。
 
-```javascript
+```
 app.get('/index.html', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 });
@@ -431,7 +431,7 @@ Express -- GET 参数接收之路径方式
 
 访问地址：`http://localhost:8080/getusers/admin/18`，可通过 `request.params` 来获取参数
 
-```javascript
+```
 app.get('/getUsers/:username/:age', function(request, response){
     var params = {
         username: request.params.username,
@@ -447,7 +447,7 @@ Express -- POST
 - 安装 body-parser `npm install body-parser`
 - 参数接受和 GET 基本一样，不同的在于 GET 是 `request.query` 而 POST 的是 `request.body`
 
-```javascript
+```
 var bodyParser = require('body-parser');
 // 创建 application/x-www-form-urlencoded 编码解析
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -462,7 +462,7 @@ app.post('/getUsers', urlencodedParser, function (request, response) {
 
 Express -- 跨域支持(放在最前面)
 
-```javascript
+```
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
@@ -482,7 +482,7 @@ express的中间件编写——过滤器
 
 简单使用
 
-```javascript
+```
 const express = require('express')
 const app = express();
 
@@ -504,7 +504,7 @@ app.get('/:name/:pwd', filter, (req, res) => {
 
 如果想要全局使用的话，就直接使用use方法即可。
 
-```javascript
+```
 app.use(filter);
 ```
 
@@ -520,7 +520,7 @@ node一般会使用mongo和mysql，使用下面这个例子即可：
 
 官方 api `http://mongodb.github.io/node-mongodb-native/`
 
-```javascript
+```
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var db;
@@ -547,7 +547,7 @@ module.exports = {
 
 ## 操作 MySql
 
-```javascript
+```
 var mysql = require('mysql');
 
 //创建连接池
@@ -588,7 +588,7 @@ Session 不能跨域。
 
 node操作session和cookie也很简单，也是通过中间件的形式。
 
-```javascript
+```
 const express = require('express')
 const path = require('path')
 const app = express();
@@ -651,7 +651,7 @@ Token 身份验证实现 —— jsonwebtoken
 
 先安装第三方模块 jsonwebtoken `npm install jsonwebtoken`
 
-```javascript
+```
 const express = require('express')
 const path = require('path')
 const app = express();
@@ -758,7 +758,7 @@ soket.io 依靠事件驱动的模式，灵活的使用了自定义事件和调�
 - 安装第三方模块 `npm install express socket.io`
 - 开户 Socket 服务器，端口为 88
 
-```javascript
+```
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -770,7 +770,7 @@ http.listen(88);
 - connection：监听客户端连接,回调函数会传递本次连接的socket
 - emit：触发用客户端的事件
 
-```javascript
+```
 io.on('connection', function(client){
     //把当前登录的用户保存到对象 onlinePersons，并向所有在线的用户发起上线提示
     //serverLogin 为自定义事件，供客户端调用
@@ -806,7 +806,7 @@ yarn add kafka-node
 
 生产者
 
-```javascript
+```
 var kafka = require('..');
 var Producer = kafka.Producer;
 var KeyedMessage = kafka.KeyedMessage;
@@ -837,7 +837,7 @@ producer.on('error', function (err) {
 
 消费者
 
-```javascript
+```
 'use strict';
 
 var kafka = require('..');
@@ -904,7 +904,7 @@ consumer.on('offsetOutOfRange', function (topic) {
 
 TDD
 
-```javascript
+```
 suite('Array', ()=>{
     setup(()={
         
@@ -918,7 +918,7 @@ suite('Array', ()=>{
 
 BDD
 
-```javascript
+```
 describe('Array', function() {
   before(function() {
   });
@@ -956,7 +956,7 @@ yarn add chai
 
 #### 代码示例
 
-```javascript
+```
 describe('hooks', function() { 
   before(function() {
     

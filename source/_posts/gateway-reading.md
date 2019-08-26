@@ -21,7 +21,7 @@ OpenFaaS的Gateway是一个golang实现的请求转发的网关，在这个网�
 
 ### 依赖
 
-```go
+```
 github.com/gorilla/mux
 
 github.com/nats-io/go-nats-streaming
@@ -120,7 +120,7 @@ Gateway的目录明显多了很多，看源码的时候，首先要找到的是m
 
 如果配置了开启基本安全验证，会从磁盘中读取密钥：
 
-```go
+```
 var credentials *types.BasicAuthCredentials
 
 if config.UseBasicAuth {
@@ -146,7 +146,7 @@ if config.UseBasicAuth {
 - ListFunctions
 - ScaleFunction
 
-```go
+```
 if credentials != nil {
 	faasHandlers.UpdateFunction =
 			handlers.DecorateWithBasicAuth(faasHandlers.UpdateFunction, credentials)
@@ -167,7 +167,7 @@ if credentials != nil {
 2. 然后给请求头上设置一个字段`WWW-Authenticate`，值为`Basic realm="Restricted"`
 3. 如果校验失败，则返回错误，成功的话调用next方法继续进入下一个handler。
 
-```go
+```
 // DecorateWithBasicAuth enforces basic auth as a middleware with given credentials
 func DecorateWithBasicAuth(next http.HandlerFunc, credentials *types.BasicAuthCredentials) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +199,7 @@ Gateway本身不做任何和部署发布函数的事情，它只是作为一个�
 - DeleteFunction
 - UpdateFunction
 
-```go
+```
 faasHandlers.RoutelessProxy = handlers.MakeForwardingProxyHandler(reverseProxy, forwardingNotifiers, urlResolver)
 	faasHandlers.ListFunctions = handlers.MakeForwardingProxyHandler(reverseProxy, forwardingNotifiers, urlResolver)
 	faasHandlers.DeployFunction = handlers.MakeForwardingProxyHandler(reverseProxy, forwardingNotifiers, urlResolver)
@@ -231,7 +231,7 @@ MakeForwardingProxyHandler()有三个参数：
 
 3. 打印日志
 
-```go
+```
 // MakeForwardingProxyHandler create a handler which forwards HTTP requests
 func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy, notifiers []HTTPNotifier, baseURLResolver BaseURLResolver) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -259,7 +259,7 @@ func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy, notifiers [
 3. 实例化用于异步处理的Request对象
 4. 调用canQueueRequests.Queue(req)，将请求发布到队列中
 
-```go
+```
 // MakeQueuedProxy accepts work onto a queue
 func MakeQueuedProxy(metrics metrics.MetricOptions, wildcard bool, canQueueRequests queue.CanQueueRequests) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -332,7 +332,7 @@ Prometheus将监控指标发给AlertManager之后，会触发AlterManager调用`
 
 MakeAlertHandler方法接收的参数是ServiceQuery。ServiceQuery是一个接口，它有两个函数，用来get或者ser最大的副本数。Gateway中实现这个接口的类是ExternalServiceQuery，这个实现类是在plugin包中，我们也可以直接定制这个实现类，用来实现满足特定条件。
 
-```go
+```
 // ServiceQuery provides interface for replica querying/setting
 type ServiceQuery interface {
 	GetReplicas(service string) (response ServiceQueryResponse, err error)
@@ -358,7 +358,7 @@ type ExternalServiceQuery struct {
 
 MakeAlertHandler的函数主要是从`http.Request`中读取body，然后反序列化成`PrometheusAlert`对象：
 
-```go
+```
 // PrometheusAlert as produced by AlertManager
 type PrometheusAlert struct {
 	Status   string                 `json:"status"`
@@ -369,7 +369,7 @@ type PrometheusAlert struct {
 
 可以发现，这个Alerts是一个数组对象，所以可以是对多个函数进行缩放。反序列化之后，调用`handleAlerts`方法，而`handleAlerts`对Alerts进行遍历，针对每个Alerts调用了`scaleService`方法。`scaleService`才是真正处理伸缩服务的函数。
 
-```go
+```
 func scaleService(alert requests.PrometheusInnerAlert, service ServiceQuery) error {
 	var err error
 	serviceName := alert.Labels.FunctionName
@@ -404,7 +404,7 @@ func scaleService(alert requests.PrometheusInnerAlert, service ServiceQuery) err
 
   新副本数的计算方法是根据`com.openfaas.scale.factor`计算步长：
 
-  ```go
+  ```
   step := uint64((float64(maxReplicas) / 100) * float64(scalingFactor))
   ```
 
@@ -420,7 +420,7 @@ func scaleService(alert requests.PrometheusInnerAlert, service ServiceQuery) err
 
 - config：`ScalingConfig`的对象：
 
-  ```go
+  ```
   // ScalingConfig for scaling behaviours
   type ScalingConfig struct {
   	MaxPollCount         uint              // 查到的最大数量
@@ -436,7 +436,7 @@ func scaleService(alert requests.PrometheusInnerAlert, service ServiceQuery) err
    - 为了加快函数的启动速度，如果缓存中可以获该得函数，且函数的副本数大于0，满足条件，return即可。
    - 如果不满足上一步，就会调用`SetReplicas`方法设置副本数，并更新FunctionCache的缓存。
 
-```go
+```
 // MakeScalingHandler creates handler which can scale a function from
 // zero to 1 replica(s).
 func MakeScalingHandler(next http.HandlerFunc, upstream http.HandlerFunc, config ScalingConfig) http.HandlerFunc {
@@ -476,7 +476,7 @@ func MakeScalingHandler(next http.HandlerFunc, upstream http.HandlerFunc, config
 
 监控是一个定时任务，开启了一个新协程，利用go的ticker.C的间隔不停的去调用`/system/functions`接口。反序列化到MetricOptions对象中。
 
-```go
+```
 func AttachExternalWatcher(endpointURL url.URL, metricsOptions MetricOptions, label string, interval time.Duration) {
 	ticker := time.NewTicker(interval)
 	quit := make(chan struct{})

@@ -40,7 +40,7 @@ Docker中的任何容器或者进程都可以是FaaS中的一个无服务器函�
 
 * Python示例：
 
-```python
+```
 import requests
 
 def handle(req):
@@ -51,7 +51,7 @@ def handle(req):
 
 * Node.js示例：
 
-```js
+```
 "use strict"
 
 module.exports = (callback, context) => {

@@ -184,7 +184,7 @@ HD Wallet 采用 2048 个单词，或者汉字作为助记词，这些词库对�
 
 计算gas费用
 
-```js
+```
 var estimateGas = eth.estimateGas({from:eth.accounts[1], to: eth.accounts[2], value: web3.toWei(1)})
 
 var cost = estimateGas * gasPrice
@@ -192,25 +192,25 @@ var cost = estimateGas * gasPrice
 
 解锁账户
 
-```js
+```
 personal.unlockAccount(eth.accounts[3], "12345678")
 ```
 
 转账
 
-```js
+```
 var txnHash = eth.sendTransaction({from: eth.accounts[3], to: eth.accounts[5], value: eth.getBalance(eth.accounts[3]) - cost, gas: estimateGas})
 ```
 
 查看交易细节
 
-```js
+```
 web3.eth.getTransaction(txnHash)
 ```
 
 获取余额
 
-```js
+```
 eth.getBalance(eth.accounts[3])
 ```
 
@@ -226,7 +226,7 @@ keystore文件
 
 经过分析造成发送失败原因是，频率太高，因为web.js 是异步操作，当前程序还未完成交易，交易尚未确认的情况下第二笔交易发送出去，这时就会出错。
 
-```js
+```
 web3.eth.getTransactionCount(from).then(function(nonce){
 	// 问题就出在 nonce ， nonce 如同数据库中的序列主键，如果上一个交易没有完成，下一个交易取得 nonce + 1 后与上一个 pending 的交易相同，产生冲突
 }	
@@ -253,7 +253,7 @@ ERC20 “描述了实现代币合约的标准功能”，ERC20 是各个代币�
 
 最简单的合约如下：
 
-```js
+```
 pragma solidity ^0.4.24;
 
 contract EncryptToken {
@@ -279,7 +279,7 @@ contract EncryptToken {
 
 使用了openzeppeline-solidity的安全标准代币合约是：
 
-```js
+```
   pragma solidity ^0.4.24;
   import "openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 

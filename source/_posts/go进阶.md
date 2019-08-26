@@ -54,7 +54,7 @@ go 提供了很多可视化的工具，参考https://blog.golang.org/profiling-g
 
 也可以自定义修改pprof程序监听的端口和路径，参考：
 
-```go
+```
 package main
 
 import (

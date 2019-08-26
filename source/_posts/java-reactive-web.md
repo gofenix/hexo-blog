@@ -32,7 +32,7 @@ In [computing](https://en.wikipedia.org/wiki/Computing), **reactive programmin
 
   这种就是推的模式
 
-  ```java
+  ```
   int[] a=[1, 2, 3]
   
   for(int i: a){
@@ -40,7 +40,7 @@ In [computing](https://en.wikipedia.org/wiki/Computing), **reactive programmin
   }
   ```
 
-  ```java
+  ```
   package com.reactive.demo.reactivedemo;
   
   import java.util.Observable;

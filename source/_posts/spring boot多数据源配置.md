@@ -15,7 +15,7 @@ tags:
 
 首先要将spring boot自带的`DataSourceAutoConfiguration`禁掉，因为它会读取`application.properties`文件的`spring.datasource.*`属性并自动配置单数据源。在`@SpringBootApplication`注解中添加`exclude`属性即可：
 
-```java
+```
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DemoApplication {
 	public static void main(String[] args) {
@@ -44,7 +44,7 @@ spring.datasource.secondary.driver-class-name=com.mysql.jdbc.Driver
 
 由于我们禁掉了自动数据源配置，因些下一步就需要手动将这些数据源创建出来：
 
-```java
+```
 @Configuration
 public class DataSourceConfig {
 
@@ -71,7 +71,7 @@ public class DataSourceConfig {
 
 新建jdbcTemplate的数据源配置：
 
-```java
+```
 @Configuration
 public class JdbcTemplateConfig {
     @Bean(name = "primaryJdbcTemplate")
@@ -92,7 +92,7 @@ public class JdbcTemplateConfig {
 
 然后编写单元测试用例：
 
-```java
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JpaDemoApplicationTests {
@@ -134,7 +134,7 @@ public class JpaDemoApplicationTests {
 
 新建两个mybatis的SqlSessionFactory配置：
 
-```java
+```
 @Configuration
 @MapperScan(basePackages = {"com.example.jpademo.primary.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory1")
 public class MybatisPrimaryConfig {
@@ -163,7 +163,7 @@ public class MybatisPrimaryConfig {
 
 `sqlSessionFactory2`：
 
-```java
+```
 @Configuration
 @MapperScan(basePackages = {"com.example.jpademo.secondary.mapper"}, sqlSessionFactoryRef = "sqlSessionFactory2")
 public class MybatisSecondaryConfig {
@@ -192,7 +192,7 @@ public class MybatisSecondaryConfig {
 
 然后编写mapper和实体类：
 
-```java
+```
 @Data
 public class User {
     private Integer id;
@@ -201,7 +201,7 @@ public class User {
 }
 ```
 
-```java
+```
 package com.example.jpademo.primary.mapper;
 
 import com.example.jpademo.domain.User;
@@ -218,7 +218,7 @@ public interface UserMapper1 {
 }
 ```
 
-```java
+```
 package com.example.jpademo.secondary.mapper;
 
 import com.example.jpademo.domain.User;
@@ -238,7 +238,7 @@ public interface UserMapper2 {
 
 编写单元测试用例：
 
-```java
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JpaDemoApplicationTests {

@@ -17,7 +17,7 @@ guice是谷歌推出的一个轻量级的依赖注入框架，当然spring也可
 
 maven:
 
-```xml
+```
 <dependency>
     <groupId>com.google.inject</groupId>
     <artifactId>guice</artifactId>
@@ -35,7 +35,7 @@ compile "com.google.inject:guice:4.1.0"
 
 首先需要一个业务接口，包含一个方法来执行业务逻辑，它的实现非常简单：
 
-```java
+```
 package com.learning.guice;
 public interface UserService {
     void process();
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
 然后写一个日志的接口：
 
-```java
+```
 package com.learning.guice;
 public interface LogService {
     void log(String msg);
@@ -70,7 +70,7 @@ public class LogServiceImpl implements LogService {
 
 最后是一个系统接口和相应的实现，在实现中使用了业务接口和日志接口处理业务逻辑和打印日志信息：
 
-```java
+```
 package com.learning.guice;
 public interface Application {
     void work();
@@ -101,7 +101,7 @@ public class MyApp implements Application {
 
 guice是使用java代码来配置依赖。继承AbstractModule类，并重写其中的config方法。在config方法中，调用AbstractModule类中提供的方法来配置依赖关系。最常用的是bind(接口).to(实现类)。
 
-```java
+```
 package com.learning.guice;
 
 import com.google.inject.AbstractModule;
@@ -121,7 +121,7 @@ public class MyAppModule extends AbstractModule {
 
 guice配置完之后，我们需要调用Guice.createInjector方法传入配置类来创建一个注入器，然后使用注入器中的getInstance方法获取目标类。
 
-```java
+```
 package com.learning.guice;
 
 import com.google.inject.Guice;
@@ -163,7 +163,7 @@ Process finished with exit code 0
 
   在绑定依赖的时候不仅可以将父类和子类绑定，还可以将子类和子类的子类进行绑定。
 
-  ```java
+  ```
   public class BillingModule extends AbstractModule {
     @Override 
     protected void configure() {
@@ -181,7 +181,7 @@ Process finished with exit code 0
 
   首先需要在要注入的地方添加@Named注解。
 
-  ```java
+  ```
   public class RealBillingService implements BillingService {
 
     @Inject
@@ -193,7 +193,7 @@ Process finished with exit code 0
 
   然后在绑定中添加annotatedWith方法指定@Named中指定的名称。由于编译器无法检查字符串，所以Guice官方建议我们保守地使用这种方式。
 
-  ```java
+  ```
   bind(CreditCardProcessor.class)
           .annotatedWith(Names.named("Checkout"))
           .to(CheckoutCreditCardProcessor.class);
@@ -203,7 +203,7 @@ Process finished with exit code 0
 
   有时候需要直接注入一个对象的实例，而不是从依赖关系中解析。如果我们要注入基本类型的话只能这么做。
 
-  ```java
+  ```
   bind(String.class)
           .annotatedWith(Names.named("JDBC URL"))
           .toInstance("jdbc:mysql://localhost/pizza");
@@ -218,7 +218,7 @@ Process finished with exit code 0
 
   @Provides方法也可以应用@Named和自定义注解，还可以注入其他依赖，Guice会在调用方法之前注入需要的对象。
 
-  ```java
+  ```
   public class BillingModule extends AbstractModule {
     @Override
     protected void configure() {
@@ -239,7 +239,7 @@ Process finished with exit code 0
 
   如果项目中存在多个比较复杂的对象需要构建，使用@Provide方法会让配置类变得比较乱。我们可以使用Guice提供的Provider接口将复杂的代码放到单独的类中。办法很简单，实现Provider<T>接口的get方法即可。在Provider类中，我们可以使用@Inject任意注入对象。
 
-  ```java
+  ```
   public class DatabaseTransactionLogProvider implements Provider<TransactionLog> {
     private final Connection connection;
 
@@ -258,7 +258,7 @@ Process finished with exit code 0
 
   然后在config方法中，调用.toProvider方法：
 
-  ```java
+  ```
   public class BillingModule extends AbstractModule {
     @Override
     protected void configure() {
@@ -278,7 +278,7 @@ Process finished with exit code 0
 
   为了解决这个问题，guice 提供了 toConstructor()绑定 ，它需要你指定要使用的确切的某个目标构造函数，并处理 "constructor annot be found" 异常：
 
-  ```java
+  ```
   public class BillingModule extends AbstractModule {
     @Override 
     protected void configure() {
@@ -304,7 +304,7 @@ Process finished with exit code 0
 
 默认情况下Guice会在每次注入的时候创建一个新对象。如果希望创建一个单例依赖的话，可以在实现类上应用@Singleton注解。
 
-```java
+```
 @Singleton
 public class InMemoryTransactionLog implements TransactionLog {
   /* everything here should be threadsafe! */
@@ -313,13 +313,13 @@ public class InMemoryTransactionLog implements TransactionLog {
 
 或者也可以在配置类中指定。
 
-```java
+```
 bind(TransactionLog.class).to(InMemoryTransactionLog.class).in(Singleton.class);
 ```
 
 在`@Provides`方法中也可以指定单例。
 
-```java
+```
 @Provides @Singleton
   TransactionLog provideTransactionLog() {
     ...

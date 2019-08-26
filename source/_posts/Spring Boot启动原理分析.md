@@ -9,7 +9,7 @@ tags:
 
 我们在开发spring boot应用的时候，一般会遇到如下的启动类：
 
-```java
+```
 @SpringBootApplication
 public class DemoApplication {
 	public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class DemoApplication {
 从这段代码可以看出，注解@SpringBootApplication和SpringApplication.run()是比较重要的两个东西。
 ## 1 @SpringApplication注解
 
-```java
+```
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -41,7 +41,7 @@ public @interface SpringBootApplication {
 - @ComponentScan
 
 其实，我们使用这三个注解来修饰springboot的启动类也可以正常运行,如下所示：
-```java
+```
 @ComponentScan
 @EnableAutoConfiguration
 @Configuration
@@ -72,7 +72,7 @@ XML跟config配置方式的区别可以从如下几个方面来说：
 
   基于java config配置方式是这样的：
 
-  ```java
+  ```
   @Configuration
   public class MockConfiguration{
       //bean定义
@@ -90,7 +90,7 @@ XML跟config配置方式的区别可以从如下几个方面来说：
 
   而基于Java config的配置形式是这样的：
 
-  ```java
+  ```
   @Configuration
   public class MockConfiguration{
   	@Bean
@@ -114,7 +114,7 @@ XML跟config配置方式的区别可以从如下几个方面来说：
 
   而基于Java config的配置形式是这样的：
 
-  ```java
+  ```
   @Configuration
   public class MockConfiguration{
       @Bean
@@ -145,7 +145,7 @@ Spring框架提供了各种名字为@Enable开头的Annotation定义，比如@En
 
 @EnableAutoConfiguration也是借助@Import的帮助，将所有符合自动配置条件的bean定义加载到IoC容器。
 
-```java
+```
 @SuppressWarnings("deprecation")
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -166,7 +166,7 @@ public @interface EnableAutoConfiguration {
 
 SpringFactoriesLoader属于Spring框架私有的一种扩展方案，其主要功能就是从指定的配置文件`META-INF/spring.factories`加载配置。
 
-```java
+```
 public abstract class SpringFactoriesLoader {
     public static <T> List<T> loadFactories(Class<T> factoryClass, ClassLoader classLoader) {
         ...

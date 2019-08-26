@@ -18,7 +18,7 @@ yarn add redis
 
 模块使用实例
 
-```javascript
+```
 const redis = require('redis')
 const client = redis.createClient('6379', '127.0.0.1')
 
@@ -54,7 +54,7 @@ Promises
 
 如果是使用node 8或者之上的话，使用node的util.promisify来将请求变成promise的。
 
-```javascript
+```
 const {promisify}=require('util')
 const redis = require('redis')
 const client = redis.createClient('6379', '127.0.0.1')

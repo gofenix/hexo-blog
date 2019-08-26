@@ -58,7 +58,7 @@ tags:
 
 示例：
 
-```js
+```
 const {startWith, when, goto, stay, stop} = botkit.DSL(fsm);
  
 startWith(MyStates.IDLE, {counter: 0});
@@ -98,7 +98,7 @@ when(MyStates.LOOP)((sender, content, data) => {
 
 - routing dialog
 
-  ```js
+  ```
   // hotels.js
   module.exports = [
       // Destination
@@ -132,7 +132,7 @@ when(MyStates.LOOP)((sender, content, data) => {
 
   一个瀑布流的dialog，可以让我们在一个dialog中像流一样完成一系列的动作。就像fsm的多种状态的集合。
 
-  ```js
+  ```
   [
       // Destination
       function (session) {

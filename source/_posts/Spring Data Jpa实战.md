@@ -103,7 +103,7 @@ spring.jpa.properties.hibernate.hbm2ddl.auto=create-drop
 
 创建一个User实体，包含id（主键）、name（姓名）、age（年龄）属性，通过ORM框架其会被映射到数据库表中，由于配置了`hibernate.hbm2ddl.auto`，在应用启动的时候框架会自动去数据库中创建对应的表。
 
-```java
+```
 @Data
 @NoArgsConstructor
 @Entity
@@ -129,7 +129,7 @@ public class Users {
 
 针对User实体创建对应的`Repository`接口实现对该实体的数据访问：
 
-```java
+```
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
     Users findByName(String name);
@@ -155,7 +155,7 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
 ## 4 单元测试
 
-```java
+```
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JpaDemoApplicationTests {

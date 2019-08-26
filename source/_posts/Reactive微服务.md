@@ -44,13 +44,13 @@ Vert.x是一个用于构建reactive和分布式系统的工具箱，其使用了
 
 传统编程模式
 
-```java
+```
 int res = compute(1, 2);
 ```
 
 在这段代码中，是在等待compute函数计算出来结果之后再进行剩下的操作。而在异步非阻塞的编程模式中，将会创建一个handler：
 
-```java
+```
 compute(1, 2, res -> {
     // called with the result
 });
@@ -58,7 +58,7 @@ compute(1, 2, res -> {
 
 在上述代码中，compute函数不再返回一个结果，而是传一个handler，当结果准备好时调用就可以了。得益于这种开发模型，可以使用很少的线程去处理高并发工作。在vert.x中，到处都可以看到这种形式的代码，比如创建http服务器时：
 
-```java
+```
 vertx.createHttpServer()
     .requestHandler(request -> {
         request.response().end("hello vert.x");

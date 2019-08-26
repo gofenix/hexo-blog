@@ -100,7 +100,7 @@ java的vertx和go的gin框架也是这样一种思路。
 
 下面这个示例是gin的：
 
-```go
+```
 package main
 
 import (

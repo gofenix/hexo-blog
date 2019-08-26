@@ -69,7 +69,7 @@ js的异步写法的演进
 
   es6增加了generator函数，就是协程的一种实现，最大特点就是使用yield关键字就是用来交出函数的执行权。
 
-  ```javascript
+  ```
   function* gen(x){
     var y = yield x + 2;
     return y;
