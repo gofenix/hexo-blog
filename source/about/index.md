@@ -2,6 +2,7 @@
 title: About me
 date:
 layout: about
+comments: false
 ---
 
 我是**朱振峰**，1993年出生于河南，天秤座，毕业于北京邮电大学(数字媒体技术专业)，目前就职于Finogeeks(深圳)。
