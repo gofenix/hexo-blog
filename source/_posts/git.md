@@ -46,3 +46,15 @@ git checkout dev
 
 git cherry-pic ${commit_id}
 ```
+
+# 常用开发流程
+
+git checkout -b feature1
+
+git commit之后，进行rebase
+
+git pull --rebase
+
+gca!
+
+git rvm
