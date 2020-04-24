@@ -30,7 +30,7 @@ jobs:
       id: deploy
       uses: sma11black/hexo-action@v1.0.1
       with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
+        deploy_key: 8a37f3339910a64cce4ee0af246a24f545a77754
         user_name: zhenfeng-zhu  # (or delelte this input setting to use bot account)
         user_email: codeless98@163.com  # (or delelte this input setting to use bot account)
         commit_msg: ${{ github.event.head_commit.message }}  # (or delelte this input setting to use hexo default settings)
