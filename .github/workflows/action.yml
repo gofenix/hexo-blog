@@ -28,7 +28,7 @@ jobs:
     # Deploy hexo blog website.
     - name: Deploy
       id: deploy
-      uses: 'zhenfeng-zhu/zhenfeng-zhu.github.io'
+      uses: zhenfeng-zhu/zhenfeng-zhu.github.io@master
       with:
         deploy_key: 
         user_name: 'zhenfeng-zhu'  # (or delelte this input setting to use bot account)
