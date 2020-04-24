@@ -1,0 +1,16 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Build and Deploy
+      uses: zhenfeng-zhu/hexo-blog@master
+      env:
+        PERSONAL_TOKEN: c3fa90e4f1f2909d14cc8fda2815993221b280f9
+        PUBLISH_REPOSITORY: zhenfeng-zhu/zhenfeng-zhu.github.io # The repository the action should deploy to.
+        BRANCH: master  # The branch the action should deploy to.
+        PUBLISH_DIR: ./public # The folder the action should deploy.
