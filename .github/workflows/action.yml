@@ -1,19 +1,40 @@
-name: Build and Deploy
+name: Deploy
+
 on: [push]
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    name: A job to deploy blog.
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Hexo Deploy
-      uses: Solybum/hexo-deploy@1.0
-
-    - name: Build and Deploy
-      uses: zhenfeng-zhu/hexo-blog@master
-      env:
-        PERSONAL_TOKEN: c3fa90e4f1f2909d14cc8fda2815993221b280f9
-        PUBLISH_REPOSITORY: zhenfeng-zhu/zhenfeng-zhu.github.io # The repository the action should deploy to.
-        BRANCH: master  # The branch the action should deploy to.
-        PUBLISH_DIR: ./public # The folder the action should deploy.
+      uses: actions/checkout@v1
+      with:
+        submodules: true # Checkout private submodules(themes or something else).
+    
+    # Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)
+    - name: Cache node modules
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm install
+    
+    # Deploy hexo blog website.
+    - name: Deploy
+      id: deploy
+      uses: zhenfeng-zhu/zhenfeng-zhu.github.io
+      with:
+        deploy_key: 
+        user_name: zhenfeng-zhu  # (or delelte this input setting to use bot account)
+        user_email: codeless98@163.com  # (or delelte this input setting to use bot account)
+        commit_msg: c3fa90e4f1f2909d14cc8fda2815993221b280f9  # (or delelte this input setting to use hexo default settings)
+    # Use the output from the `deploy` step(use for test action)
+    - name: Get the output
+      run: |
+        echo "${{ steps.deploy.outputs.notify }}"
