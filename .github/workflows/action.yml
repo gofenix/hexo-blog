@@ -10,7 +10,7 @@ jobs:
     - name: Build and Deploy
       uses: renzhaosy/hexo-deploy-action@master
       env:
-        PERSONAL_TOKEN: c3fa90e4f1f2909d14cc8fda2815993221b280f9
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_REPOSITORY: zhenfeng-zhu/zhenfeng-zhu.github.io # The repository the action should deploy to.
         BRANCH: master  # The branch the action should deploy to.
         PUBLISH_DIR: ./public # The folder the action should deploy.
