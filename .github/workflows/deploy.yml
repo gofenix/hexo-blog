@@ -4,12 +4,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Hexo Deploy
-      uses: Solybum/hexo-deploy@1.0
-
-
     - name: Checkout
       uses: actions/checkout@master
+
+    - name: Hexo Deploy
+      uses: Solybum/hexo-deploy@1.0
 
     - name: Build and Deploy
       uses: zhenfeng-zhu/hexo-blog@master
