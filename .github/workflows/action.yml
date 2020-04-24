@@ -28,10 +28,10 @@ jobs:
     # Deploy hexo blog website.
     - name: Deploy
       id: deploy
-      uses: zhenfeng-zhu/zhenfeng-zhu.github.io
+      uses: 'zhenfeng-zhu/zhenfeng-zhu.github.io'
       with:
         deploy_key: 
-        user_name: zhenfeng-zhu  # (or delelte this input setting to use bot account)
+        user_name: 'zhenfeng-zhu'  # (or delelte this input setting to use bot account)
         user_email: codeless98@163.com  # (or delelte this input setting to use bot account)
         commit_msg: c3fa90e4f1f2909d14cc8fda2815993221b280f9  # (or delelte this input setting to use hexo default settings)
     # Use the output from the `deploy` step(use for test action)
